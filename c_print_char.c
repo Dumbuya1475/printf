@@ -1,15 +1,21 @@
 #include "main.h"
 
-/**
- * c_printf_char - print a character
- * @var: argument
- * Return: 1
-*/
-int c_printf_char(va_list val)
-{
-    char string;
+/************************* PRINT CHAR *************************/
 
-    string = va_arg(val, int);
-    _putchar(string);
-    return (1);
+/**
+ * c_printf_char - Prints a char
+ * @types: List a of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: Width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
+ */
+int c_printf_char(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
+{
+	char c = va_arg(types, int);
+
+	return (handle_write_char(c, buffer, flags, width, precision, size));
 }

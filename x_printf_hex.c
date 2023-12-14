@@ -1,38 +1,17 @@
-#include "main.h"
-
+/************** PRINT UNSIGNED NUMBER IN HEXADECIMAL **************/
 /**
- * x_printf_hex - Convert to hex form
- * @val: Value to convert
- * Return: count
+ * print_hexadecimal - Prints an unsigned number in hexadecimal notation
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
  */
-int x_printf_hex(va_list val)
+int x_printf_hex(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-    int i, count = 0;
-    int *array;
-    unsigned int num = va_arg(val, unsigned int);
-    unsigned int tem_var = num;
-
-    while (num / 16 != 0)
-    {
-        num = num / 16;
-        count++;
-    }
-    count++;
-    array = malloc(sizeof(int) * count);
-
-    for (i = 0; i < count; i++)
-    {
-        array[i] = tem_var % 16;
-        tem_var = tem_var / 16;
-    }
-	for (i = count - 1; i >= 0; i--)
-    {
-        if (array[i] > 9)
-        {
-            array[i] = array[i] + 39;
-        }
-        _putchar(array[i] + '0');
-    }
-    free(array);
-    return (count);
+	return (print_hexa(types, "0123456789abcdef", buffer,
+		flags, 'x', width, precision, size));
 }

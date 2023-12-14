@@ -1,38 +1,17 @@
-#include "main.h"
-
+/************* PRINT UNSIGNED NUMBER IN UPPER HEXADECIMAL **************/
 /**
- * _X_printf_HEX - Convert to hex form
- * @val: Value to convert
- * Return: count
-*/
-int _X_printf_HEX(va_list val)
+ * print_hexa_upper - Prints an unsigned number in upper hexadecimal notation
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
+ */
+int _printf_hexa_upper(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-	int count = 0;
-	int i;
-	int *array;
-	unsigned int value = va_arg(val, unsigned int);
-	unsigned int tem_var = value;
-
-	while (tem_var / 16 != 0)
-	{
-		value = value / 16;
-		count++;
-	}
-	count++;
-	array = malloc(sizeof(int) * count);
-	for (i = 0; i < count; i++)
-	{
-		array[i] = tem_var % 16;
-		tem_var = tem_var / 16;
-	}
-	for (i = count - 1; i >= 0; i--)
-	{
-		if (array[i] > 9)
-		{
-			array[i] = array[i] + 7;
-		}
-		_putchar(array[i] + '0');
-	}
-	free(array);
-	return (count);
+	return (print_hexa(types, "0123456789ABCDEF", buffer,
+		flags, 'X', width, precision, size));
 }
